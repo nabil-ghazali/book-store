@@ -13,7 +13,16 @@ CREATE TABLE author (
 );
 
 CREATE TABLE book (
+   book_id INT PRIMARY KEY,
+   title VARCHAR(50) NOT NULL,
+   author VARCHAR(50) NOT NULL,
+   price DECIMAL(15,2) NOT NULL,
+   stock INT NOT NULL,
+   date_publication DATE,
+   FOREIGN KEY(theme_id) REFERENCES theme(theme_id),
+   FOREIGN KEY(author_id) REFERENCES author(author_id)
 );
+
 
 CREATE TABLE customer (
     customer_id INT PRIMARY KEY,
@@ -32,4 +41,10 @@ CREATE TABLE customer_order (
 );
 
 CREATE TABLE review (
+   review_id INT PRIMARY KEY,
+   rating BYTE NOT NULL,
+   comment TEXT,
+   FOREIGN KEY(book_id) REFERENCES book(book_id),
+   FOREIGN KEY(customer_id) REFERENCES customer(customer_id)
 );
+
