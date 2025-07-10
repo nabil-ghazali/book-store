@@ -1,8 +1,12 @@
 -- Bonus SQL
 
 -- 1. Trouver les 3 auteurs dont les livres ont généré le plus de chiffre d’affaires total.
-
-
+SELECT a.first_name, a.last_name, SUM(b.price) AS total_by_author
+FROM author a 
+JOIN book b ON a.author_id = b.author_id
+JOIN customer_order co ON co.book_id = b.book_id
+GROUP BY a.author_id
+ORDER BY total_by_author DESC LIMIT 3
 -- 2. Calculer le total des ventes par thème de livre, classé du plus au moins vendu (en montant).
 
 
